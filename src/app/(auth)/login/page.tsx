@@ -30,8 +30,9 @@ export default function LoginPage() {
 
       // refresh server session แล้ว hard redirect เพื่อให้ middleware รับ cookie ใหม่
       window.location.href = '/dashboard'
-    } catch {
-      setError('เกิดข้อผิดพลาด กรุณาลองใหม่')
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err)
+      setError(`Error: ${msg}`)
       setLoading(false)
     }
   }
