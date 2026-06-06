@@ -106,10 +106,10 @@ export default function MealsPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-gray-900">บันทึกมื้ออาหาร</h1>
-        <div className="bg-orange-50 text-orange-600 px-4 py-2 rounded-xl text-sm font-medium">
-          รวม {totalCalories.toLocaleString()} kcal วันนี้
+      <div className="flex items-center justify-between gap-3">
+        <h1 className="text-xl md:text-2xl font-bold text-gray-900">บันทึกมื้ออาหาร</h1>
+        <div className="shrink-0 bg-orange-50 text-orange-600 px-3 py-1.5 rounded-xl text-xs md:text-sm font-medium">
+          {totalCalories.toLocaleString()} kcal วันนี้
         </div>
       </div>
 

@@ -68,10 +68,10 @@ export default function ExercisePage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-gray-900">บันทึกออกกำลังกาย</h1>
-        <div className="bg-red-50 text-red-600 px-4 py-2 rounded-xl text-sm font-medium">
-          เผาผลาญ {totalBurned.toLocaleString()} kcal วันนี้
+      <div className="flex items-center justify-between gap-3">
+        <h1 className="text-xl md:text-2xl font-bold text-gray-900">บันทึกออกกำลังกาย</h1>
+        <div className="shrink-0 bg-red-50 text-red-600 px-3 py-1.5 rounded-xl text-xs md:text-sm font-medium">
+          เผาผลาญ {totalBurned.toLocaleString()} kcal
         </div>
       </div>
 

@@ -55,14 +55,14 @@ export default function AICoachPage() {
   }
 
   return (
-    <div className="flex flex-col h-full max-h-[calc(100vh-10rem)]">
-      <div className="mb-4">
-        <h1 className="text-2xl font-bold text-gray-900">AI Coach</h1>
+    <div className="flex flex-col" style={{ height: 'calc(100svh - 8rem)' }}>
+      <div className="mb-3 shrink-0">
+        <h1 className="text-xl md:text-2xl font-bold text-gray-900">AI Coach</h1>
         <p className="text-gray-500 text-sm">ที่ปรึกษาการลดน้ำหนักส่วนตัวของคุณ</p>
       </div>
 
       <div className="flex-1 bg-white rounded-2xl border border-gray-100 shadow-sm flex flex-col overflow-hidden">
-        <div className="flex-1 overflow-auto p-6 space-y-4">
+        <div className="flex-1 overflow-auto p-4 md:p-6 space-y-4">
           {messages.map((m, i) => (
             <div key={i} className={`flex gap-3 ${m.role === 'user' ? 'flex-row-reverse' : ''}`}>
               <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
@@ -98,12 +98,12 @@ export default function AICoachPage() {
         </div>
 
         {messages.length === 1 && (
-          <div className="px-6 pb-4 flex flex-wrap gap-2">
+          <div className="px-4 md:px-6 pb-3 flex gap-2 overflow-x-auto">
             {suggestions.map((s) => (
               <button
                 key={s}
                 onClick={() => sendMessage(s)}
-                className="text-xs bg-green-50 text-green-700 px-3 py-1.5 rounded-full hover:bg-green-100 transition-colors"
+                className="text-xs bg-green-50 text-green-700 px-3 py-1.5 rounded-full hover:bg-green-100 transition-colors shrink-0 whitespace-nowrap"
               >
                 {s}
               </button>
