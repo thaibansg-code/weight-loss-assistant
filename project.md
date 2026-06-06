@@ -123,6 +123,6 @@ daily_goals (
 - **Database**: Supabase (ตั้งค่า env vars ใน Vercel dashboard)
 
 ## Links
-- GitHub: (รอเชื่อมต่อ)
-- Vercel: (รอ deploy)
-- Supabase: (รอ configure)
+- GitHub: https://github.com/thaibansg-code/weight-loss-assistant
+- Vercel: (เชื่อม GitHub repo → vercel.com แล้วตั้ง env vars)
+- Supabase: https://supabase.com/dashboard/project/akbjdszkfrjaoujaojiu
