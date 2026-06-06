@@ -36,7 +36,7 @@ export default function WaterPage() {
       date: today,
       water_ml: newAmount,
       water_target_ml: DAILY_TARGET,
-    })
+    }, { onConflict: 'user_id,date' })
     setLoading(false)
   }
 
