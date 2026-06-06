@@ -17,20 +17,25 @@ export default function RegisterPage() {
     setLoading(true)
     setError('')
 
-    const supabase = createClient()
-    const { error } = await supabase.auth.signUp({
-      email: form.email,
-      password: form.password,
-      options: { data: { name: form.name } },
-    })
+    try {
+      const supabase = createClient()
+      const { error } = await supabase.auth.signUp({
+        email: form.email,
+        password: form.password,
+        options: { data: { name: form.name } },
+      })
 
-    if (error) {
-      setError(error.message)
+      if (error) {
+        setError(error.message)
+        setLoading(false)
+        return
+      }
+
+      window.location.href = '/onboarding'
+    } catch {
+      setError('เกิดข้อผิดพลาด กรุณาลองใหม่')
       setLoading(false)
-      return
     }
-
-    router.push('/onboarding')
   }
 
   return (

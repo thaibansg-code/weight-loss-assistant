@@ -18,16 +18,22 @@ export default function LoginPage() {
     setLoading(true)
     setError('')
 
-    const supabase = createClient()
-    const { error } = await supabase.auth.signInWithPassword({ email, password })
+    try {
+      const supabase = createClient()
+      const { error } = await supabase.auth.signInWithPassword({ email, password })
 
-    if (error) {
-      setError('อีเมลหรือรหัสผ่านไม่ถูกต้อง')
+      if (error) {
+        setError('อีเมลหรือรหัสผ่านไม่ถูกต้อง')
+        setLoading(false)
+        return
+      }
+
+      // refresh server session แล้ว hard redirect เพื่อให้ middleware รับ cookie ใหม่
+      window.location.href = '/dashboard'
+    } catch {
+      setError('เกิดข้อผิดพลาด กรุณาลองใหม่')
       setLoading(false)
-      return
     }
-
-    router.push('/dashboard')
   }
 
   return (
