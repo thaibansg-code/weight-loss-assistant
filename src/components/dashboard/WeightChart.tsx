@@ -29,7 +29,7 @@ export default function WeightChart({ logs }: { logs: WeightLog[] }) {
             <XAxis dataKey="date" tick={{ fontSize: 11 }} />
             <YAxis tick={{ fontSize: 11 }} domain={['auto', 'auto']} unit=" kg" />
             <Tooltip
-              formatter={(v: number) => [`${v} kg`, 'น้ำหนัก']}
+              formatter={(v) => [`${v} kg`, 'น้ำหนัก']}
               contentStyle={{ borderRadius: '12px', border: '1px solid #e5e7eb' }}
             />
             <Line
