@@ -1,9 +1,9 @@
-import Anthropic from '@anthropic-ai/sdk'
+import { GoogleGenerativeAI } from '@google/generative-ai'
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { calculateBMI } from '@/lib/utils'
 
-const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
+const genAI = new GoogleGenerativeAI(process.env.GOOGLE_AI_API_KEY!)
 
 export async function POST(req: NextRequest) {
   try {
@@ -66,17 +66,22 @@ export async function POST(req: NextRequest) {
 
 ${userContext ? `ข้อมูลส่วนตัวของผู้ใช้ที่คุณควรอ้างอิงในการตอบ:\n${userContext}` : ''}`
 
-    const response = await client.messages.create({
-      model: 'claude-sonnet-4-6',
-      max_tokens: 1024,
-      system: systemPrompt,
-      messages: messages.map((m: { role: string; content: string }) => ({
-        role: m.role,
-        content: m.content,
-      })),
+    const model = genAI.getGenerativeModel({
+      model: 'gemini-1.5-flash',
+      systemInstruction: systemPrompt,
     })
 
-    const message = response.content[0].type === 'text' ? response.content[0].text : ''
+    // แปลง history (ยกเว้น message ล่าสุด)
+    const history = messages.slice(0, -1).map((m: { role: string; content: string }) => ({
+      role: m.role === 'assistant' ? 'model' : 'user',
+      parts: [{ text: m.content }],
+    }))
+
+    const chat = model.startChat({ history })
+    const lastMessage = messages[messages.length - 1]
+    const result = await chat.sendMessage(lastMessage.content)
+    const message = result.response.text()
+
     return NextResponse.json({ message })
   } catch (error) {
     console.error('AI Coach error:', error)

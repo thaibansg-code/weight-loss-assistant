@@ -8,7 +8,7 @@
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
 - **Database**: Supabase (PostgreSQL)
-- **AI**: Anthropic Claude (claude-sonnet-4-6)
+- **AI**: Google Gemini 1.5 Flash (ฟรี via Google AI Studio)
 - **Auth**: Supabase Auth
 - **Charts**: Recharts
 - **Deploy**: Vercel
@@ -50,7 +50,7 @@ src/
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
 SUPABASE_SERVICE_ROLE_KEY=
-ANTHROPIC_API_KEY=
+GOOGLE_AI_API_KEY=
 ```
 
 ## Commands
@@ -67,9 +67,11 @@ npm run lint     # Run ESLint
 - Cards: white bg + border-gray-100 + shadow-sm
 
 ## AI Coach
-- Model: claude-sonnet-4-6
+- Model: gemini-1.5-flash (Google AI Studio — ฟรี)
+- SDK: @google/generative-ai
 - ตอบภาษาไทยเสมอ
 - เน้นคำแนะนำที่ปลอดภัยและยั่งยืน
+- Context-aware: ดึงข้อมูล user/วันนี้ส่งให้ Gemini ทุก request
 - API endpoint: /api/ai-coach (POST)
 
 ## Coding Conventions
